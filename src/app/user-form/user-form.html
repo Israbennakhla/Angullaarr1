@@ -1,0 +1,26 @@
+<form [formGroup]="userForm">
+    <label for="username">Username:</label>
+    <input formControlName ="username" >
+    <br>
+    <label for="email">Email:</label>
+    <input formControlName ="email" >
+
+     @if(userForm.get('username')?.hasError('required') && userForm.get('username')?.touched) {
+       username is invalid.
+    }
+    @if(userForm.get('password')?.hasError('minlength') && userForm.get('password')?.touched) {
+       password is invalid.
+    }
+    @if(userForm.get('email')?.hasError('pattern') && userForm.get('email')?.touched) {
+       email is invalid.
+    }
+
+    <br>
+    <label for="password">Password:</label>
+    <input formControlName ="password" >
+    <button [disabled]="userForm.invalid" type="submit">Submit</button>
+    <button type="reset">Reset</button>
+   
+   
+</form> 
+    
