@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable,inject } from '@angular/core';
 
 export interface Conferance {
   id: number;
@@ -24,4 +25,14 @@ export class ConferanceService {
   getById(id: number): Conferance | undefined {
     return this.conferances.find(conferance => conferance.id === id);
   }
+ 
+    http = inject(HttpClient);
+
+    apiUrl = 'http://localhost:3000/conferances';
+    getAllconferances(){
+      return this.http.get<any[]>(this.apiUrl);
+    }
+    getConferanceById(id: number){
+      return this.http.get<any>(`${this.apiUrl}/${id}`);
+    }
 }
